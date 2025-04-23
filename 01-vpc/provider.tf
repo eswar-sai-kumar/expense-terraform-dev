@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "s3" {
-   bucket         = "remote-state-saiku"
-   key            = "expense-dev-sg"
-   region         = "us-east-1"
-   dynamodb_table = "remote-state-locking"
+    bucket         = "s3-bucket-project-devops"
+    key            = "expense-dev-vpc"
+    region         = "us-east-1"
+    dynamodb_table = "dynamoDB-table-project"
   }
 }
 provider "aws" {
