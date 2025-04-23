@@ -5,12 +5,12 @@ terraform {
       version = "5.48.0"
     }
   }
-  #backend "s3" {
-  # bucket         = "THE_NAME_OF_THE_STATE_BUCKET"
-   # key            = "some_environment/terraform.tfstate"
-    #region         = "us-east-1"
-    #dynamodb_table = "THE_ID_OF_THE_DYNAMODB_TABLE"
-  #}
+  backend "s3" {
+   bucket         = "remote-state-saiku"
+   key            = "expense-dev-sg"
+   region         = "us-east-1"
+   dynamodb_table = "remote-state-locking"
+  }
 }
 provider "aws" {
   region = "us-east-1"
