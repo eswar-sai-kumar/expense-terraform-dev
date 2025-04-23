@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "s3-bucket-project-devops"
+    bucket         = "s3bucket-project-devops"
     key            = "expense-dev-vpc"
     region         = "us-east-1"
-    dynamodb_table = "dynamoDB-table-project"
+    dynamodb_table = "use_lock"
   }
 }
 provider "aws" {
