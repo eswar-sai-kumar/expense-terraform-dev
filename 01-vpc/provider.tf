@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "s3bucket-project-devops"
+    bucket = "eswar-sai-kumar-bucket"
     key    = "expense-dev-vpc"
     region = "us-east-1"
     dynamodb_table = "daws78s-locking"
