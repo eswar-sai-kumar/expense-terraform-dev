@@ -9,7 +9,7 @@ terraform {
     bucket = "s3bucket-project-devops"
     key    = "expense-dev-vpc"
     region = "us-east-1"
-    dynamodb_table = "daws78s-locking"
+    dynamodb_table = "table-project-devops"
   }
 }
 
