@@ -1,5 +1,34 @@
 # 03-bastion
 
+A Bastion Host is like a secure doorway to access private servers in a network.
+
+##### Why use a Bastion Host?
+Security: Instead of opening doors to all your private servers on the internet, you only open the door to the Bastion Host. From there, you can safely access the private servers.
+
+One Point of Access: It’s a single entry point for admins or users to connect to private servers.
+
+Monitoring: You can monitor and control who’s accessing the private servers since everyone goes through the Bastion Host.
+
+##### How does it work?
+
+You connect to the Bastion Host first (usually through SSH or RDP).
+
+Once connected to the Bastion Host, you can access the private servers inside the network.
+
+##### Example:
+Public Network: The Bastion Host is in a public subnet, so you can access it from the internet.
+
+Private Network: Your private servers (like databases or application servers) are in a private subnet and are not exposed to the internet.
+
+Access Flow:
+
+You first log in to the Bastion Host.
+
+From the Bastion Host, you can then connect to the private servers inside the network.
+
+##### In short:
+A Bastion Host is like a guard at the gate of a secure building, allowing only authorized people to enter and access the rooms inside.
+
 ### provider.tf
 
 ```
