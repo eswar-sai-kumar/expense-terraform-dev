@@ -21,7 +21,7 @@ module "db" {
 
   # DB option group
   major_engine_version = "8.0"
-
+  
   tags = merge(
     var.common_tags,
     {
