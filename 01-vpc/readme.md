@@ -99,6 +99,18 @@ module "vpc" {
 
 ### parameters.tf
 
+AWS SSM Parameter Store is like a key-value storage in AWS where you can safely keep:
+
+🔑 Passwords
+
+🛠️ Configuration values
+
+📦 Version info
+
+🔐 Secrets (encrypted)
+
+apps/servers can securely read values from AWS SSM Parameter Store, in Terraform via a data source.
+
 ```
 resource "aws_ssm_parameter" "vpc_id" {
   name  = "/${var.project_name}/${var.environment}/vpc_id"
