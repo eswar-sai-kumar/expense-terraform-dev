@@ -62,9 +62,13 @@ data "aws_ssm_parameter" "vpc_id" {
 ### main.tf
 
 port 22 → SSH (Secure Shell) — for secure remote login to Linux/Unix servers
+
 port 80 → HTTP → used for unencrypted web traffic
+
 port 443 → HTTPS → used for encrypted web traffic
+
 port 3306 → MySQL database server
+
 port 8080 → Alternate HTTP → often used for web servers, APIs, or local development
 
 ```
