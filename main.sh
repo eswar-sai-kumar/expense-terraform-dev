@@ -11,11 +11,14 @@ fi
 
 cd /etc/yum.repos.d/
 
-cat <<EOF > jenkins.repo
+vim -E -s jenkins.repo <<-EOF
+  i
 [jenkins]
 name=Jenkins-stable
 baseurl=http://pkg.jenkins.io/redhat-stable
 gpgcheck=1
+.
+wq
 EOF
 
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
