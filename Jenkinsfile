@@ -10,6 +10,7 @@ pipeline {
         choice(name: 'action', choices: ['Apply', 'Destroy'], description: 'Pick Terraform action')
         choice(name: 'module', choices: ['01-vpc', '02-sg', '03-bastion', '04-db', '05-apps'], description: 'Pick Terraform module')
     }
+    
     stages {
         stage('Init') {
             steps {
