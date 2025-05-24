@@ -24,6 +24,11 @@ yum install -y fontconfig java-21-openjdk
 
 yum install -y jenkins
 
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum install terraform -y
+
+
 systemctl daemon-reload
 systemctl enable jenkins
 systemctl start jenkins
