@@ -1,8 +1,7 @@
 sudo su -
 cd /etc/yum.repos.d/
 
-CONTENT="
-[jenkins]
+CONTENT="[jenkins]
 name=Jenkins-stable
 baseurl=http://pkg.jenkins.io/redhat-stable
 gpgcheck=1
