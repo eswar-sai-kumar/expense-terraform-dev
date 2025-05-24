@@ -1,24 +1,32 @@
+#!/bin/bash
 
+# Exit on any error
+set -e
+
+# Switch to root user (script must be run as sudo or root)
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run this script as root or using sudo."
+  exit 1
+fi
+
+# Step 1: Go to yum repo directory
 cd /etc/yum.repos.d/
 
-CONTENT="[jenkins]
-name=Jenkins-stable
-baseurl=http://pkg.jenkins.io/redhat-stable
-gpgcheck=1
-"
+# Step 2: Download Jenkins repo file directly
+curl -o jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 
-vim "jenkins.repo" <<EOF
-:1
-i
-$CONTENT
-.
-:wq
-EOF
+# Step 3: Import Jenkins GPG key
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-sudo yum install fontconfig java-21-openjdk -y
-sudo yum install jenkins -y
-sudo systemctl daemon-reload
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
+# Step 4: Install Java (required for Jenkins)
+yum install -y fontconfig java-21-openjdk
 
+# Step 5: Install Jenkins
+yum install -y jenkins
+
+# Step 6: Reload systemd, enable and start Jenkins
+systemctl daemon-reload
+systemctl enable jenkins
+systemctl start jenkins
+
+echo "✅ Jenkins installation completed. Access it at: http://<your-server-ip>:8080"
