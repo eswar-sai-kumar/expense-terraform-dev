@@ -1,3 +1,15 @@
+// plugins: ansicolor, aws-credentials
+def withAwsCredentials(Closure body) {
+    withCredentials([[
+        $class: 'UsernamePasswordMultiBinding',
+        credentialsId: 'aws-credentials', // Jenkins credential ID
+        usernameVariable: 'AWS_ACCESS_KEY_ID',
+        passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+    ]]) {
+        body()
+    }
+}
+
 pipeline {
     agent any
     options {
@@ -14,10 +26,14 @@ pipeline {
     stages {
         stage('Init') {
             steps {
-               sh """
-                cd ${params.module}
-                terraform init -reconfigure
-               """
+                script {
+                    withAwsCredentials {
+                        sh """
+                            cd ${params.module}
+                            terraform init -reconfigure
+                        """
+                    }
+                }
             }
         }
         stage('Plan') {
@@ -27,10 +43,14 @@ pipeline {
                 }
             }
             steps {
-                sh """
-                cd ${params.module}
-                terraform plan
-                """
+                script {
+                    withAwsCredentials {
+                        sh """
+                            cd ${params.module}
+                            terraform plan
+                        """
+                    }
+                }
             }
         }
         stage('Deploy') {
@@ -44,10 +64,14 @@ pipeline {
                 ok "Yes, we should."
             } 
             steps {
-                sh """
-                cd ${params.module}
-                terraform apply -auto-approve
-                """
+                script {
+                    withAwsCredentials {
+                        sh """
+                            cd ${params.module}
+                            terraform apply -auto-approve
+                        """
+                    }
+                }
             }
         }
 
@@ -58,10 +82,14 @@ pipeline {
                 }
             }
             steps {
-                sh """
-                cd ${params.module}
-                terraform destroy -auto-approve
-                """
+                script {
+                    withAwsCredentials {
+                        sh """
+                            cd ${params.module}
+                            terraform destroy -auto-approve
+                        """
+                    }
+                }
             }
         }
     }
