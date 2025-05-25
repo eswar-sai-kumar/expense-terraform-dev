@@ -1,7 +1,7 @@
 // plugins: ansicolor, aws-credentials
 def withAwsCredentials(Closure body) {
     withCredentials([[
-        $class: 'UsernamePasswordMultiBinding',
+        $class: 'AmazonWebServicesCredentialsBinding',
         credentialsId: 'aws-credentials', // Jenkins credential ID
         usernameVariable: 'AWS_ACCESS_KEY_ID',
         passwordVariable: 'AWS_SECRET_ACCESS_KEY'
