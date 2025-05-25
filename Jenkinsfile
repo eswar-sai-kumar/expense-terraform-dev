@@ -2,7 +2,7 @@
 def withAwsCredentials(Closure body) {
     withCredentials([[
         $class: 'AmazonWebServicesCredentialsBinding',
-        credentialsId: 'aws-credentials', // Jenkins credential ID
+        credentialsId: 'aws-credentials', // we have to add aws credentials in jenkins, name it 'aws-credentials' 
         usernameVariable: 'AWS_ACCESS_KEY_ID',
         passwordVariable: 'AWS_SECRET_ACCESS_KEY'
     ]]) {
